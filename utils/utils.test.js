@@ -11,10 +11,25 @@ it('should add two numbers', () => {
     expect(res).toBeA('number').toBe(44)
 })
 
+it('should async add two numbers', (done) => {
+    utils.asyncAdd(33, 11, (sum) => {
+        expect(sum).toBe(44).toBeA('number')
+        //by passing done into the test, mocha can understand the async nature and only check after done() is called.
+        done()
+    })
+})
+
 it('should square a number', () => {
     let res = utils.square(10)
 
     expect(res).toBeA('number').toBe(100)
+})
+
+it('should square a number', (done) => {
+    utils.asyncSquare(100, (squared) => {
+        expect(squared).toBeA('number').toBe(100)
+        done()
+    })
 })
 
 it('should expect a value', () => {
